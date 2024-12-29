@@ -1,6 +1,6 @@
 import React from 'react'
-import HeaderLeft from './left-side';
-import HeaderRight from './right-side';
+import HeaderLeft from './LeftSide';
+import HeaderRight from './RightSide';
 
 export default function Header() {
 	return (

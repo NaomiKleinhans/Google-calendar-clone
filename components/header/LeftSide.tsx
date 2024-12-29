@@ -8,7 +8,7 @@ export default function HeaderLeft() {
   return (
     <div className="flex items-center gap-3">
       {/*Burger Menu Button*/}
-      <div className="hidden items-center lg:flex">
+      <div className="items-center flex">
         <Button variant="ghost" className="cursor-pointer rounded-full p-2">
           <Menu className="size-6" />
         </Button>
