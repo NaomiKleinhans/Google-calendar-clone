@@ -4,7 +4,7 @@ import { cn } from "@/lib/utils";
 import dayjs from "dayjs";
 import React, { useEffect, useState } from "react";
 import { ScrollArea } from "./ui/scroll-area";
-import { EventRenderer } from "./event-renderer";
+import { EventRenderer } from "./EventRenderer";
 
 export default function WeekView() {
   const [currentTime, setCurrentTime] = useState(dayjs());

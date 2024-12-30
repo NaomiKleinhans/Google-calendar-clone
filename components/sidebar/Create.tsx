@@ -5,8 +5,8 @@ import { Button } from "@/components/ui/button";
 import { ChevronDown } from "lucide-react";
 import { useDateStore } from "@/lib/store";
 import { useCallback, useState } from "react";
-import { SvgIcons } from "../svg-icons";
-import EventPopover from "../event-popover";
+import { SvgIcons } from "../SvgIcons";
+import EventPopover from "../EventPopover";
 
 export default function Create() {
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);

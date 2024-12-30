@@ -4,7 +4,7 @@ import dayjs from "dayjs";
 import React, { useEffect, useState } from "react";
 import { ScrollArea } from "./ui/scroll-area";
 import { getHours, isCurrentDay } from "@/lib/getTime";
-import { EventRenderer } from "./event-renderer";
+import { EventRenderer } from "./EventRenderer";
 
 export default function DayView() {
   const [currentTime, setCurrentTime] = useState(dayjs());

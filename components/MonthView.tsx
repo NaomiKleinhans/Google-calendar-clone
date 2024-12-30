@@ -1,8 +1,9 @@
 "use client";
 
 import React, { Fragment } from "react";
-import MonthViewBox from "./month-view-box";
+
 import { useDateStore } from "@/lib/store";
+import MonthViewBox from "./MonthViewDay";
 
 export default function MonthView() {
   const { twoDMonthArray } = useDateStore();

@@ -8,9 +8,8 @@ import {
 
 import SideBar from "./sidebar/SideBar";
 
-
-import EventPopover from "./event-popover";
-import { EventSummaryPopover } from "./event-summary-popover";
+import EventPopover from "./EventPopover";
+import { EventSummaryPopover } from "./EventSummaryPopover";
 import { useEffect } from "react";
 import dayjs from "dayjs";
 import MonthView from "./MonthView";
@@ -36,7 +35,7 @@ export default function MainView({
   const { userSelectedDate } = useDateStore();
 
   useEffect(() => {
-     if (!eventsData) return;
+    if (!eventsData) return;
     const mappedEvents: CalendarEventType[] = eventsData.map((event) => ({
       id: event.id,
       date: dayjs(event.date),
