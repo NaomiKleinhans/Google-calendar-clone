@@ -49,7 +49,6 @@ export default function MainView({
 
   return (
     <div className="flex">
-      {/* SideBar */}
       <SideBar />
 
       <div className="w-full flex-1">
