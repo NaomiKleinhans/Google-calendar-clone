@@ -77,13 +77,15 @@ export default function HeaderLeft() {
           <Menu className="size-6" />
         </Button>
         {/*Calendar Icon*/}
-        <Image
-          src={`/calendar_images/calendar_${todaysDate.date().toString()}_2x.png`}
-          width={40}
-          height={40}
-          alt="google calendar icon"
-        />
-        <h1 className="text-xl">Calendar</h1>
+        <div className="hidden items-center text-xl lg:flex lg:flex-row">
+          <Image
+            src={`/calendar_images/calendar_${todaysDate.date().toString()}_2x.png`}
+            width={40}
+            height={40}
+            alt="google calendar icon"
+          />
+          <span className="ml-2">Calendar</span>
+        </div>
       </div>
       {/*Button to go to current day*/}
       <Button variant="outline" onClick={handleTodayClick}>
@@ -101,7 +103,7 @@ export default function HeaderLeft() {
         />
       </div>
       {/*Month and Year currently*/}
-      <h1 className="text-xl lg:block">
+      <h1 className="sm:text-xs md:text-lg lg:block lg:text-xl">
         {dayjs(new Date(dayjs().year(), selectedMonthIndex)).format(
           "MMMM YYYY",
         )}
