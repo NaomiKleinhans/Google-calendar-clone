@@ -1,17 +1,17 @@
-'use client'
-import { getMonth } from '@/lib/getTime';
-import React, { Fragment } from 'react'
-import MonthViewDay from './MonthViewDay';
+"use client";
+
+import React, { Fragment } from "react";
+import MonthViewBox from "./month-view-box";
+import { useDateStore } from "@/lib/store";
 
 export default function MonthView() {
-	// console.table(getMonth())
-	const currentMonth = getMonth()
-	return (
-    <section className='grid grid-cols-7 grid-rows-5 lg:h-[100vh]'>
-      {currentMonth.map((row, i) => (
+  const { twoDMonthArray } = useDateStore();
+  return (
+    <section className="sm:h-[75vh] md:h-[90vh] lg:h-[100vh] w-full grid grid-cols-7 grid-rows-5">
+      {twoDMonthArray.map((row, i) => (
         <Fragment key={i}>
           {row.map((day, index) => (
-            <MonthViewDay key={index} day={day} rowIndex={i} />
+            <MonthViewBox key={index} day={day} rowIndex={i} />
           ))}
         </Fragment>
       ))}

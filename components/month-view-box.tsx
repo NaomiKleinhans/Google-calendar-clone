@@ -4,6 +4,7 @@ import dayjs from "dayjs";
 import React from "react";
 import { EventRenderer } from "./event-renderer";
 
+
 export default function MonthViewBox({
   day,
   rowIndex,
@@ -39,7 +40,7 @@ export default function MonthViewBox({
       )}
       onClick={handleClick}
     >
-      <div className="flex flex-col items-center">
+      <div className="flex flex-col items-center h-[15vh]">
         {rowIndex === 0 && (
           <h4 className="text-xs text-gray-500">
             {day.format("ddd").toUpperCase()}
