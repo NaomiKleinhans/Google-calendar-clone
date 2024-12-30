@@ -1,15 +1,12 @@
-"use client";
-
-import React, { useState } from "react";
 import CalendarSideBar from "./CalendarSideBar";
 import Create from "./Create";
 import UserSearch from "./UserSearch";
 import { cn } from "@/lib/utils";
 import MyCalendars from "./MyCalendars";
-// import Create from './create';
+import { useToggleSideBarStore } from "@/lib/store";
 
 export default function SideBar() {
-  const [isSideBarOpen] = useState(false);
+    const { isSideBarOpen } = useToggleSideBarStore();
   return (
     <aside
       className={cn(

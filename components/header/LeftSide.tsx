@@ -101,7 +101,7 @@ export default function HeaderLeft() {
         />
       </div>
       {/*Month and Year currently*/}
-      <h1 className="hidden text-xl lg:block">
+      <h1 className="text-xl lg:block">
         {dayjs(new Date(dayjs().year(), selectedMonthIndex)).format(
           "MMMM YYYY",
         )}
