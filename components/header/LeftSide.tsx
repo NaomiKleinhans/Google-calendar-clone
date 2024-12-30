@@ -1,4 +1,5 @@
-'use client'
+"use client";
+
 import React from "react";
 import { Menu } from "lucide-react";
 import { Button } from "../ui/button";
@@ -69,9 +70,9 @@ export default function HeaderLeft() {
       {/*Burger Menu Button*/}
       <div className="flex items-center">
         <Button
-          onClick={() => setSideBarOpen()}
           variant="ghost"
           className="cursor-pointer rounded-full p-2"
+          onClick={() => setSideBarOpen()}
         >
           <Menu className="size-6" />
         </Button>
