@@ -11,8 +11,8 @@ import { IoCloseSharp } from "react-icons/io5";
 import { IoMdCalendar } from "react-icons/io";
 import { FiClock } from "react-icons/fi";
 import AddTime from "./TimeAdd";
-import { createEvent } from "@/app/actions/event-actions";
 import { cn } from "@/lib/utils";
+import { createEvent } from "@/src/actions/event-actions";
 
 interface EventPopoverProps {
   isOpen: boolean;
@@ -162,7 +162,7 @@ export default function EventPopover({
             <div className="">
               <div className="flex items-center space-x-3 text-sm">
                 {" "}
-                <p>De Mawo</p>{" "}
+                <p>Naomi Kleinhans</p>{" "}
                 <div className="h-4 w-4 rounded-full bg-violet-500"></div>{" "}
               </div>
               <div className="flex items-center space-x-1 text-xs">

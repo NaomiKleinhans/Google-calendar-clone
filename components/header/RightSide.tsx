@@ -28,7 +28,7 @@ export default function HeaderRight() {
       </Select>
 
       <Avatar>
-        <AvatarImage src="/calendar images/Avatar_unsplash.jpg" />
+        <AvatarImage src="/calendar_images/Avatar_unsplash.jpg" />
         <AvatarFallback>CN</AvatarFallback>
       </Avatar>
     </div>
