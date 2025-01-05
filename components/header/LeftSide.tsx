@@ -80,7 +80,6 @@ export default function HeaderLeft() {
   return (
     <div className="flex items-center gap-3">
       {/*Burger Menu Button*/}
-      <div className="flex items-center">
         <Button
           variant="ghost"
           className="cursor-pointer rounded-full p-2"
@@ -98,13 +97,11 @@ export default function HeaderLeft() {
           />
           <span className="ml-2">Calendar</span>
         </div>
-      </div>
       {/*Button to go to current day*/}
       <Button variant="outline" onClick={handleTodayClick}>
         Today
       </Button>
       {/*Navigation*/}
-      <div className="flex items-center gap-3">
         <MdKeyboardArrowLeft
           onClick={handlePrevClick}
           className="size-6 cursor-pointer font-bold"
@@ -113,7 +110,6 @@ export default function HeaderLeft() {
           onClick={handleNextClick}
           className="size-6 cursor-pointer font-bold"
         />
-      </div>
       {/*Month and Year currently*/}
       <h1 className="sm:text-md md:text-lg lg:block lg:text-xl">
         {dayjs(new Date(dayjs().year(), selectedMonthIndex)).format(

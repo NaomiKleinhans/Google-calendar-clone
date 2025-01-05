@@ -1,4 +1,6 @@
-import { getHours, getWeekDays } from "@/lib/getTime";
+'use client'
+
+import { getHours,getWeekDays } from "@/lib/getTime";
 import { useDateStore, useEventStore } from "@/lib/store";
 import { cn } from "@/lib/utils";
 import dayjs from "dayjs";
