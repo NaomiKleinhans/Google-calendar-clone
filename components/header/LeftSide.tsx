@@ -24,10 +24,11 @@ export default function HeaderLeft() {
         break;
       case "week":
         setDate(todaysDate);
+        setMonth(todaysDate.month());
         break;
       case "day":
         setDate(todaysDate);
-        setMonth(dayjs().month());
+        setMonth(todaysDate.month());
         break;
       default:
         break;
@@ -35,15 +36,20 @@ export default function HeaderLeft() {
   };
 
   const handlePrevClick = () => {
+    let newDate;
     switch (selectedView) {
       case "month":
         setMonth(selectedMonthIndex - 1);
         break;
       case "week":
-        setDate(userSelectedDate.subtract(1, "week"));
+        newDate = userSelectedDate.subtract(1, "week");
+        setDate(newDate);
+        setMonth(newDate.month());
         break;
       case "day":
-        setDate(userSelectedDate.subtract(1, "day"));
+        newDate = userSelectedDate.subtract(1, "day");
+        setDate(newDate);
+        setMonth(newDate.month());
         break;
       default:
         break;
@@ -51,20 +57,26 @@ export default function HeaderLeft() {
   };
 
   const handleNextClick = () => {
+    let newDate;
     switch (selectedView) {
       case "month":
         setMonth(selectedMonthIndex + 1);
         break;
       case "week":
-        setDate(userSelectedDate.add(1, "week"));
+        newDate = userSelectedDate.add(1, "week");
+        setDate(newDate);
+        setMonth(newDate.month());
         break;
       case "day":
-        setDate(userSelectedDate.add(1, "day"));
+        newDate = userSelectedDate.add(1, "day");
+        setDate(newDate);
+        setMonth(newDate.month());
         break;
       default:
         break;
     }
   };
+
   return (
     <div className="flex items-center gap-3">
       {/*Burger Menu Button*/}
@@ -103,8 +115,7 @@ export default function HeaderLeft() {
         />
       </div>
       {/*Month and Year currently*/}
-      <h1 className="sm:text-md
-       md:text-lg lg:block lg:text-xl">
+      <h1 className="sm:text-md md:text-lg lg:block lg:text-xl">
         {dayjs(new Date(dayjs().year(), selectedMonthIndex)).format(
           "MMMM YYYY",
         )}
