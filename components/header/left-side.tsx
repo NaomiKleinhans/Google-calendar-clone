@@ -7,15 +7,17 @@ import Image from "next/image";
 import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from "react-icons/md";
 import { useDateStore, useToggleSideBarStore, useViewStore } from "@/lib/store";
 import dayjs from "dayjs";
+// import { useToggleSideBarStore } from "@/lib/store";
 
 export default function HeaderLeft() {
   const todaysDate = dayjs(); // Using dayjs for the current date
   const { userSelectedDate, setDate, setMonth, selectedMonthIndex } =
     useDateStore();
 
-  const { setSideBarOpen } = useToggleSideBarStore();
+  // const { setSideBarOpen } = useToggleSideBarStore();
 
   const { selectedView } = useViewStore();
+   const { toggleSideBar } = useToggleSideBarStore();
 
   const handleTodayClick = () => {
     switch (selectedView) {
@@ -80,7 +82,9 @@ export default function HeaderLeft() {
       <Button
         variant="ghost"
         className="cursor-pointer rounded-full p-2"
-        onClick={() => setSideBarOpen()}
+          onClick={toggleSideBar}
+                title="Toggle Sidebar"
+                aria-label="Toggle Sidebar"
       >
         <Menu className="size-6" />
       </Button>

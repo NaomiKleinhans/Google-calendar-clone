@@ -38,6 +38,7 @@ type EventStore = {
 interface ToggleSideBarType {
   isSideBarOpen: boolean;
   setSideBarOpen: () => void;
+  toggleSideBar: () => void;
 }
 
 export const useViewStore = create<ViewStoreType>()(
@@ -93,5 +94,9 @@ export const useToggleSideBarStore = create<ToggleSideBarType>()(
     setSideBarOpen: () => {
       set({ isSideBarOpen: !get().isSideBarOpen });
     },
+     toggleSideBar: () =>
+    set((state) => ({
+      isSideBarOpen: !state.isSideBarOpen, // Toggle the open/closed state
+    }))
   }),
 );
