@@ -9,7 +9,7 @@ import { useDateStore, useToggleSideBarStore, useViewStore } from "@/lib/store";
 import dayjs from "dayjs";
 
 export default function HeaderLeft() {
-  const todaysDate = dayjs();
+  const todaysDate = dayjs(); // Using dayjs for the current date
   const { userSelectedDate, setDate, setMonth, selectedMonthIndex } =
     useDateStore();
 
@@ -20,14 +20,12 @@ export default function HeaderLeft() {
   const handleTodayClick = () => {
     switch (selectedView) {
       case "month":
-        setMonth(dayjs().month());
+        setMonth(todaysDate.month());
         break;
       case "week":
-        setDate(todaysDate);
-        break;
       case "day":
         setDate(todaysDate);
-        setMonth(dayjs().month());
+        setMonth(todaysDate.month());
         break;
       default:
         break;
@@ -35,15 +33,20 @@ export default function HeaderLeft() {
   };
 
   const handlePrevClick = () => {
+    let newDate;
     switch (selectedView) {
       case "month":
         setMonth(selectedMonthIndex - 1);
         break;
       case "week":
-        setDate(userSelectedDate.subtract(1, "week"));
+        newDate = userSelectedDate.subtract(1, "week");
+        setDate(newDate);
+        setMonth(newDate.month());
         break;
       case "day":
-        setDate(userSelectedDate.subtract(1, "day"));
+        newDate = userSelectedDate.subtract(1, "day");
+        setDate(newDate);
+        setMonth(newDate.month());
         break;
       default:
         break;
@@ -51,15 +54,20 @@ export default function HeaderLeft() {
   };
 
   const handleNextClick = () => {
+    let newDate;
     switch (selectedView) {
       case "month":
         setMonth(selectedMonthIndex + 1);
         break;
       case "week":
-        setDate(userSelectedDate.add(1, "week"));
+        newDate = userSelectedDate.add(1, "week");
+        setDate(newDate);
+        setMonth(newDate.month());
         break;
       case "day":
-        setDate(userSelectedDate.add(1, "day"));
+        newDate = userSelectedDate.add(1, "day");
+        setDate(newDate);
+        setMonth(newDate.month());
         break;
       default:
         break;
@@ -68,46 +76,44 @@ export default function HeaderLeft() {
 
   return (
     <div className="flex items-center gap-3">
-      {/* Sidebar Toggle and Calendar Icon */}
-      <div className="hidden items-center lg:flex">
-        <Button
-          variant="ghost"
-          className="rounded-full p-2"
-          onClick={() => setSideBarOpen()}
-        >
-          <Menu className="size-6" />
-        </Button>
+      {/* Burger Menu Button */}
+      <Button
+        variant="ghost"
+        className="cursor-pointer rounded-full p-2"
+        onClick={() => setSideBarOpen()}
+      >
+        <Menu className="size-6" />
+      </Button>
+
+      {/* Calendar Icon */}
+      <div className="hidden items-center text-xl lg:flex lg:flex-row">
         <Image
-          src={`/img/calendar_${todaysDate.date().toString()}_2x.png`}
+          src={`/calendar_images/calendar_${todaysDate.date().toString()}_2x.png`}
           width={40}
           height={40}
-          alt="icon"
+          alt="google calendar icon"
         />
-        <h1 className="text-xl">Calendar</h1>
+        <span className="ml-2">Calendar</span>
       </div>
 
-      {/* Today Button */}
+      {/* Button to go to current day */}
       <Button variant="outline" onClick={handleTodayClick}>
         Today
       </Button>
 
-      {/* Navigation Controls */}
-      <div className="flex items-center gap-3">
-        <MdKeyboardArrowLeft
-          className="size-6 cursor-pointer font-bold"
-          onClick={handlePrevClick}
-        />
-        <MdKeyboardArrowRight
-          className="size-6 cursor-pointer font-bold"
-          onClick={handleNextClick}
-        />
-      </div>
+      {/* Navigation */}
+      <MdKeyboardArrowLeft
+        onClick={handlePrevClick}
+        className="size-6 cursor-pointer font-bold"
+      />
+      <MdKeyboardArrowRight
+        onClick={handleNextClick}
+        className="size-6 cursor-pointer font-bold"
+      />
 
-      {/* Current Month and Year Display */}
-      <h1 className="hidden text-xl lg:block">
-        {dayjs(new Date(dayjs().year(), selectedMonthIndex)).format(
-          "MMMM YYYY",
-        )}
+      {/* Month and Year currently */}
+      <h1 className="sm:text-md md:text-lg lg:block lg:text-xl">
+        {dayjs().month(selectedMonthIndex).format("MMMM YYYY")}
       </h1>
     </div>
   );

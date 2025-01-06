@@ -1,40 +1,46 @@
-'use client'
+"use client";
 
-import React, { useRef, useEffect } from 'react'
-import dayjs from 'dayjs'
-import { Button } from "@/components/ui/button"
-import { IoCloseSharp } from "react-icons/io5"
-import { CalendarEventType } from '@/lib/store'
+import React, { useRef, useEffect } from "react";
+import dayjs from "dayjs";
+import { Button } from "@/components/ui/button";
+import { IoCloseSharp } from "react-icons/io5";
+import { CalendarEventType } from "@/lib/store";
+import { useUser } from "@clerk/clerk-react";
 
 interface EventSummaryPopoverProps {
-  isOpen: boolean
-  onClose: () => void
-  event: CalendarEventType
+  isOpen: boolean;
+  onClose: () => void;
+  event: CalendarEventType;
 }
 
-export function EventSummaryPopover({ isOpen, onClose, event }: EventSummaryPopoverProps) {
-
-    
-    
-  const popoverRef = useRef<HTMLDivElement>(null)
+export function EventSummaryPopover({
+  isOpen,
+  onClose,
+  event,
+}: EventSummaryPopoverProps) {
+  const { user } = useUser(); // Ensure this is called unconditionally
+  const popoverRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
-      if (popoverRef.current && !popoverRef.current.contains(e.target as Node)) {
-        onClose()
+      if (
+        popoverRef.current &&
+        !popoverRef.current.contains(e.target as Node)
+      ) {
+        onClose();
       }
-    }
+    };
 
     if (isOpen) {
-      document.addEventListener('mousedown', handleClickOutside)
+      document.addEventListener("mousedown", handleClickOutside);
     }
 
     return () => {
-      document.removeEventListener('mousedown', handleClickOutside)
-    }
-  }, [isOpen, onClose])
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [isOpen, onClose]);
 
-  if (!isOpen) return null
+  if (!isOpen) return null; // Conditional rendering for the entire component is okay
 
   return (
     <div
@@ -53,12 +59,21 @@ export function EventSummaryPopover({ isOpen, onClose, event }: EventSummaryPopo
           </Button>
         </div>
         <div className="space-y-2">
-          <p><strong>Title:</strong> {event.title}</p>
+          <p>
+            <strong>Title:</strong> {event.title}
+          </p>
           {/* Format the date before displaying it */}
-          <p><strong>Date:</strong> {dayjs(event.date).format("dddd, MMMM D, YYYY h:mm A")}</p>
-          {/* Add more event details here */}
+          <p>
+            <strong>Date:</strong>{" "}
+            {dayjs(event.date).format("dddd, MMMM D, YYYY h:mm A")}
+          </p>
+          <p>
+            <strong>Created By:</strong>{" "}
+            {user?.username ||
+              "Unknown"}
+          </p>
         </div>
       </div>
     </div>
-  )
+  );
 }

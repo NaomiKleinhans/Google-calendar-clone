@@ -13,6 +13,7 @@ import { FiClock } from "react-icons/fi";
 import AddTime from "./add-time";
 import { createEvent } from "@/app/actions/event-actions";
 import { cn } from "@/lib/utils";
+import { useUser } from "@clerk/clerk-react";
 
 interface EventPopoverProps {
   isOpen: boolean;
@@ -29,7 +30,8 @@ export default function EventPopover({
   const [selectedTime, setSelectedTime] = useState("00:00");
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState<boolean | null>(null);
-  const [isPending, startTransition] = useTransition();
+  const [isPending,startTransition] = useTransition();
+   const { user, isSignedIn } = useUser();
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -113,12 +115,12 @@ export default function EventPopover({
             <Button className="bg-blue-100 text-blue-700 hover:bg-blue-100 hover:text-blue-700">
               Event
             </Button>
-            <Button type="button" variant="ghost">
+            {/* <Button type="button" variant="ghost">
               Task
             </Button>
             <Button type="button" variant="ghost">
               Appointmet Schedule <sup className="bg-blue-500">new</sup>
-            </Button>
+            </Button> */}
           </div>
 
           <div className="flex items-center space-x-3">
@@ -159,19 +161,19 @@ export default function EventPopover({
 
           <div className="flex items-center space-x-3">
             <IoMdCalendar className="size-5 text-slate-600" />
-            <div className="">
+            <div>
               <div className="flex items-center space-x-3 text-sm">
                 {" "}
-                <p>De Mawo</p>{" "}
+                <p>{isSignedIn ? user?.username || "User" : "Guest"}</p>
                 <div className="h-4 w-4 rounded-full bg-violet-500"></div>{" "}
               </div>
-              <div className="flex items-center space-x-1 text-xs">
+              {/* <div className="flex items-center space-x-1 text-xs">
                 <span>Busy</span>
                 <div className="h-1 w-1 rounded-full bg-gray-500"></div>
                 <span>Default visibility</span>{" "}
                 <div className="h-1 w-1 rounded-full bg-gray-500"></div>
                 <span>Notify 30 minutes before</span>
-              </div>
+              </div> */}
             </div>
           </div>
 
