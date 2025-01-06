@@ -1,6 +1,7 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
+import dayjs from "dayjs";
 
 export async function createEvent(
   formData: FormData,
@@ -15,8 +16,9 @@ export async function createEvent(
     return { error: "All fields are required" };
   }
 
-  const dateTime = new Date(`${date}T${time}:00`);
-  if (isNaN(dateTime.getTime())) {
+  // Parse and validate date and time using dayjs
+  const dateTime = dayjs(`${date}T${time}:00`);
+  if (!dateTime.isValid()) {
     return { error: "Invalid date or time format" };
   }
 

@@ -13,16 +13,17 @@ export default function SideBarCalendar() {
   return (
     <div className="my-6 p-2">
       <div className="flex items-center justify-between">
+        {/* Month and Year Header */}
         <h4 className="text-sm">
-          {dayjs(new Date(dayjs().year(), selectedMonthIndex)).format(
-            "MMMM YYYY",
-          )}
+          {dayjs().month(selectedMonthIndex).format("MMMM YYYY")}
         </h4>
         <div className="flex items-center gap-3">
+          {/* Previous Month Button */}
           <MdKeyboardArrowLeft
             className="size-5 cursor-pointer font-bold"
             onClick={() => setMonth(selectedMonthIndex - 1)}
           />
+          {/* Next Month Button */}
           <MdKeyboardArrowRight
             className="size-5 cursor-pointer font-bold"
             onClick={() => setMonth(selectedMonthIndex + 1)}
@@ -44,7 +45,7 @@ export default function SideBarCalendar() {
 
       {/* Main Content: Weeks and Days */}
       <div className="mt-2 grid grid-cols-[auto_1fr] text-xs">
-        {/* Week Number  column */}
+        {/* Week Number Column */}
         <div className="grid w-6 grid-rows-5 gap-1 gap-y-3 rounded-sm bg-gray-100 p-1">
           {weeksOfMonth.map((week, i) => (
             <span key={i} className="flex h-5 w-5 items-center justify-center">
@@ -53,8 +54,7 @@ export default function SideBarCalendar() {
           ))}
         </div>
 
-        {/* Dates grid */}
-
+        {/* Dates Grid */}
         <div className="grid grid-cols-7 grid-rows-5 gap-1 gap-y-3 rounded-sm p-1 text-xs">
           {twoDMonthArray.map((row, i) => (
             <Fragment key={i}>

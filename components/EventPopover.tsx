@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+'use client';
+import React,{ useState } from "react";
 import { Button } from "./ui/button";
 import { EventCreate } from "./EventCreate";
 // import { TaskCreate } from "./TaskCreate";

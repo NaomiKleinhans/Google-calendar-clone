@@ -9,7 +9,7 @@ import { useDateStore, useToggleSideBarStore, useViewStore } from "@/lib/store";
 import dayjs from "dayjs";
 
 export default function HeaderLeft() {
-  const todaysDate = dayjs();
+  const todaysDate = dayjs(); // Using dayjs for the current date
   const { userSelectedDate, setDate, setMonth, selectedMonthIndex } =
     useDateStore();
 
@@ -20,12 +20,9 @@ export default function HeaderLeft() {
   const handleTodayClick = () => {
     switch (selectedView) {
       case "month":
-        setMonth(dayjs().month());
-        break;
-      case "week":
-        setDate(todaysDate);
         setMonth(todaysDate.month());
         break;
+      case "week":
       case "day":
         setDate(todaysDate);
         setMonth(todaysDate.month());
@@ -79,42 +76,44 @@ export default function HeaderLeft() {
 
   return (
     <div className="flex items-center gap-3">
-      {/*Burger Menu Button*/}
-        <Button
-          variant="ghost"
-          className="cursor-pointer rounded-full p-2"
-          onClick={() => setSideBarOpen()}
-        >
-          <Menu className="size-6" />
-        </Button>
-        {/*Calendar Icon*/}
-        <div className="hidden items-center text-xl lg:flex lg:flex-row">
-          <Image
-            src={`/calendar_images/calendar_${todaysDate.date().toString()}_2x.png`}
-            width={40}
-            height={40}
-            alt="google calendar icon"
-          />
-          <span className="ml-2">Calendar</span>
-        </div>
-      {/*Button to go to current day*/}
+      {/* Burger Menu Button */}
+      <Button
+        variant="ghost"
+        className="cursor-pointer rounded-full p-2"
+        onClick={() => setSideBarOpen()}
+      >
+        <Menu className="size-6" />
+      </Button>
+
+      {/* Calendar Icon */}
+      <div className="hidden items-center text-xl lg:flex lg:flex-row">
+        <Image
+          src={`/calendar_images/calendar_${todaysDate.date().toString()}_2x.png`}
+          width={40}
+          height={40}
+          alt="google calendar icon"
+        />
+        <span className="ml-2">Calendar</span>
+      </div>
+
+      {/* Button to go to current day */}
       <Button variant="outline" onClick={handleTodayClick}>
         Today
       </Button>
-      {/*Navigation*/}
-        <MdKeyboardArrowLeft
-          onClick={handlePrevClick}
-          className="size-6 cursor-pointer font-bold"
-        />
-        <MdKeyboardArrowRight
-          onClick={handleNextClick}
-          className="size-6 cursor-pointer font-bold"
-        />
-      {/*Month and Year currently*/}
+
+      {/* Navigation */}
+      <MdKeyboardArrowLeft
+        onClick={handlePrevClick}
+        className="size-6 cursor-pointer font-bold"
+      />
+      <MdKeyboardArrowRight
+        onClick={handleNextClick}
+        className="size-6 cursor-pointer font-bold"
+      />
+
+      {/* Month and Year currently */}
       <h1 className="sm:text-md md:text-lg lg:block lg:text-xl">
-        {dayjs(new Date(dayjs().year(), selectedMonthIndex)).format(
-          "MMMM YYYY",
-        )}
+        {dayjs().month(selectedMonthIndex).format("MMMM YYYY")}
       </h1>
     </div>
   );

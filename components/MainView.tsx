@@ -1,7 +1,7 @@
 "use client";
 import {
   CalendarEventType,
-  useDateStore,
+  // useDateStore,
   useEventStore,
   useViewStore,
 } from "@/lib/store";
@@ -32,7 +32,7 @@ export default function MainView({
     setEvents,
   } = useEventStore();
 
-  const { userSelectedDate } = useDateStore();
+  // const { userSelectedDate } = useDateStore();
 
   useEffect(() => {
     if (!eventsData) return;
@@ -59,7 +59,7 @@ export default function MainView({
         <EventPopover
           isOpen={isPopoverOpen}
           onClose={closePopover}
-          date={userSelectedDate.format("YYYY-MM-DD")}
+          // date={userSelectedDate.format("YYYY-MM-DD")}
         />
       )}
 
