@@ -47,7 +47,6 @@ export default function HeaderRight() {
           </Avatar>
 
           {dropdownOpen && (
-            // <div className="absolute right-0 z-10 mt-2 w-48 rounded border bg-white shadow-md">
             <div className="absolute right-0 z-10 space-y-1 p-2">
               <UserProfile>
                 <button>Profile</button>
