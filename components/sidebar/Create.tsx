@@ -3,10 +3,10 @@
 import React from "react";
 import { Button } from "@/components/ui/button";
 import { ChevronDown } from "lucide-react";
-// import { useDateStore } from "@/lib/store";
+import { useDateStore } from "@/lib/store";
 import { useCallback, useState } from "react";
-import { SvgIcons } from "../SvgIcons";
-import EventPopover from "../EventPopover";
+import { SvgIcons } from "../svg-icons";
+import EventPopover from "../event-popover";
 
 export default function Create() {
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
@@ -21,7 +21,7 @@ export default function Create() {
     setIsPopoverOpen(false);
   }, []);
 
-  // const { userSelectedDate } = useDateStore();
+  const { userSelectedDate } = useDateStore();
 
   return (
     <>
@@ -37,7 +37,7 @@ export default function Create() {
         <EventPopover
           isOpen={isPopoverOpen}
           onClose={handleClosePopover}
-          // date={userSelectedDate.format("YYYY-MM-DD")}
+          date={userSelectedDate.format("YYYY-MM-DD")}
         />
       )}
     </>

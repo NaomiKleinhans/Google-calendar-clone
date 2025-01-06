@@ -1,20 +1,18 @@
 "use client";
 import {
   CalendarEventType,
-  // useDateStore,
+  useDateStore,
   useEventStore,
   useViewStore,
 } from "@/lib/store";
-
+import MonthView from "./month-view";
 import SideBar from "./sidebar/SideBar";
-
-import EventPopover from "./EventPopover";
-import { EventSummaryPopover } from "./EventSummaryPopover";
+import WeekView from "./week-view";
+import DayView from "./day-view";
+import EventPopover from "./event-popover";
+import { EventSummaryPopover } from "./event-summary-popover";
 import { useEffect } from "react";
 import dayjs from "dayjs";
-import MonthView from "./MonthView";
-import WeekView from "./WeekView";
-import DayView from "./DayView";
 
 export default function MainView({
   eventsData,
@@ -32,10 +30,9 @@ export default function MainView({
     setEvents,
   } = useEventStore();
 
-  // const { userSelectedDate } = useDateStore();
+  const { userSelectedDate } = useDateStore();
 
   useEffect(() => {
-    if (!eventsData) return;
     const mappedEvents: CalendarEventType[] = eventsData.map((event) => ({
       id: event.id,
       date: dayjs(event.date),
@@ -48,6 +45,7 @@ export default function MainView({
 
   return (
     <div className="flex">
+      {/* SideBar */}
       <SideBar />
 
       <div className="w-full flex-1">
@@ -59,7 +57,7 @@ export default function MainView({
         <EventPopover
           isOpen={isPopoverOpen}
           onClose={closePopover}
-          // date={userSelectedDate.format("YYYY-MM-DD")}
+          date={userSelectedDate.format("YYYY-MM-DD")}
         />
       )}
 

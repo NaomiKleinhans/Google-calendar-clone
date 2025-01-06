@@ -1,6 +1,6 @@
 import type { Config } from "tailwindcss";
 
-export default {
+const config: Config = {
     darkMode: ["class"],
     content: [
     "./pages/**/*.{js,ts,jsx,tsx,mdx}",
@@ -78,14 +78,8 @@ export default {
   			'accordion-down': 'accordion-down 0.2s ease-out',
   			'accordion-up': 'accordion-up 0.2s ease-out'
   		}
-		},
-		screens: {
-      sm: "640px",  // Small screens (default: >=640px)
-      md: "768px",  // Medium screens (default: >=768px)
-      lg: "1024px", // Large screens (default: >=1024px)
-      xl: "1280px", // Extra large screens (default: >=1280px)
-      "2xl": "1536px", // 2x extra large screens (default: >=1536px)
-    },
+  	}
   },
   plugins: [require("tailwindcss-animate")],
-} satisfies Config;
+};
+export default config;
