@@ -7,7 +7,7 @@ Google Calendar clone using Next.js, React, Day.js, Neon Postgres, and Drizzle O
 This project allows users to integrate with Google Calendar to create, view, and manage events seamlessly.
 
 - Sign in with Google  using Clerk
-- Add Events
+- Create and view Events
 - See Month , Week & DAy Views
 
 ### Tech Stack
