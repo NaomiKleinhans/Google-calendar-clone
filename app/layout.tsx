@@ -19,7 +19,7 @@ const geistMono = localFont({
 
 export const metadata: Metadata = {
   title: "Google Calendar Clone",
-  description: "Making Scheduling possible",
+  description: "Work easier",
 };
 
 export default function RootLayout({
