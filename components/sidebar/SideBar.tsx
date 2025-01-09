@@ -3,8 +3,8 @@ import { cn } from "@/lib/utils";
 
 import { useToggleSideBarStore } from "@/lib/store";
 import SideBarCalendar from "./side-bar-calendar";
-import SearchUsers from "./search-users";
-import MyCalendars from "./my-calendars";
+// import SearchUsers from "./search-users";
+// import MyCalendars from "./my-calendars";
 
 export default function SideBar() {
   const { isSideBarOpen } = useToggleSideBarStore();
@@ -17,8 +17,8 @@ export default function SideBar() {
     >
       <Create />
       <SideBarCalendar />
-      <SearchUsers />
-      <MyCalendars />
+      {/* <SearchUsers />
+      <MyCalendars /> */}
     </aside>
   );
 }
